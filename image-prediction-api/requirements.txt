@@ -1,10 +1,9 @@
 # Image Prediction API - Python Dependencies
-# IMPORTANT: Install PyTorch FIRST (required):
+# NOTE: PyTorch must be installed FIRST using the CPU-only index:
 #   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
-# Then install the rest:
-#   pip install -r requirements.txt
 #
-# For Render deployment, use setup.sh which handles the order automatically.
+# For Render deployment, set Build Command to:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu && pip install -r requirements.txt
 
 # Backend
 fastapi
@@ -13,6 +12,6 @@ pillow
 python-multipart
 numpy
 
-# Frontend (optional — for Streamlit UI)
+# Frontend
 streamlit
 requests

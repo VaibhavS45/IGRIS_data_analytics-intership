@@ -6,9 +6,9 @@ __pycache__/
 dist/
 build/
 
-# Model files (too large for git — train on cloud or download)
-model/*.pth
-model/*.h5
+# Model files
+# .pth is OK for git (~14MB), .onnx is produced during build
+model/*.onnx
 
 # Streamlit secrets (contains API keys — never commit)
 .streamlit/secrets.toml
