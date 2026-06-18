@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Model files (too large for git — train on cloud or download)
+model/*.pth
+model/*.h5
+
+# Streamlit secrets (contains API keys — never commit)
+.streamlit/secrets.toml
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Test images
+test_images/
+
+# Training data
+data/fresh/*.jpg
+data/fresh/*.png
+data/rotten/*.jpg
+data/rotten/*.png
+
+# But keep the .gitkeep files
+!data/fresh/.gitkeep
+!data/rotten/.gitkeep
+!test_images/.gitkeep

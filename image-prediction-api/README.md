@@ -274,6 +274,72 @@ image-prediction-api/
 └── test_images/        # Sample images for testing the API
 ```
 
+## Hosting on Streamlit Cloud (Free)
+
+Deploy the frontend on **Streamlit Community Cloud** for free so anyone can try it online.
+
+### Prerequisites
+- Push your project to a **public GitHub repository**
+- Have the **FastAPI backend** already deployed on Render/Railway (or keep it local)
+
+### Step-by-step deployment
+
+#### 1. Prepare your GitHub repo
+```bash
+# Initialize git & push
+cd image-prediction-api
+git init
+git add .
+git commit -m "Initial commit: Image Prediction API"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/image-prediction-api.git
+git push -u origin main
+```
+
+#### 2. Create a Render account & deploy the FastAPI backend
+1. Go to https://render.com → Sign up with GitHub
+2. Click **New +** → **Web Service**
+3. Connect your GitHub repo
+4. Configure:
+   - **Name**: `fruit-classifier-api`
+   - **Root Directory**: (leave blank)
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `uvicorn app:app --host 0.0.0.0 --port $PORT`
+   - **Plan**: Free
+5. Click **Create Web Service**
+6. Wait for deployment (~2-3 min). Your API URL will be:  
+   `https://fruit-classifier-api.onrender.com`
+
+#### 3. Deploy Streamlit app on Streamlit Cloud
+1. Go to https://streamlit.io/cloud → **Sign in with GitHub**
+2. Click **New app** → Connect your repo
+3. Configure:
+   - **Repository**: Your GitHub repo
+   - **Branch**: `main`
+   - **Main file path**: `streamlit_app.py`
+4. Click **Deploy**
+
+#### 4. Link Streamlit to your hosted API
+1. On Streamlit Cloud dashboard, go to your app → **⚙️ Settings** → **Secrets**
+2. Add the following secret:
+   ```toml
+   [api]
+   base_url = "https://fruit-classifier-api.onrender.com"
+   ```
+3. Click **Save** → The app will automatically restart
+
+#### 5. Done! 🎉
+- **Streamlit URL**: `https://your-app-name.streamlit.app`
+- **FastAPI URL**: `https://fruit-classifier-api.onrender.com`
+- **Swagger UI**: `https://fruit-classifier-api.onrender.com/docs`
+
+### Alternative: Deploy ONLY the Streamlit app (Frontend Only)
+If you can't deploy the FastAPI backend, the Streamlit app works locally with:
+```bash
+streamlit run streamlit_app.py
+```
+The API must be running locally: `uvicorn app:app --reload`
+
 ## Resume Line
 
 > **Built an image classification REST API using FastAPI and PyTorch** — Trained a MobileNetV2 model via transfer learning to classify uploaded fruit images as fresh or rotten, with confidence scores returned via a `/predict` endpoint tested through Swagger UI.

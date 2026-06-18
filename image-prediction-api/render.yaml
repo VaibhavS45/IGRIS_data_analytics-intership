@@ -1,0 +1,11 @@
+# Render Blueprint Configuration
+# Deploy the FastAPI backend + model on Render for free
+# Add render.yaml to your GitHub repo for "Blueprint" deployment
+services:
+  # FastAPI Backend
+  - type: web
+    name: fruit-classifier-api
+    env: python
+    buildCommand: bash setup.sh
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    plan: free

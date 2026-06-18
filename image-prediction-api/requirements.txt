@@ -1,12 +1,14 @@
 # Image Prediction API - Python Dependencies
-# Install PyTorch separately (see README):
-# pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+# IMPORTANT: Install PyTorch FIRST (required):
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+# Then install the rest:
+#   pip install -r requirements.txt
+#
+# For Render deployment, use setup.sh which handles the order automatically.
 
 # Backend
 fastapi
 uvicorn
-torch
-torchvision
 pillow
 python-multipart
 numpy

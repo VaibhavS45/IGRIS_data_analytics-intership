@@ -26,14 +26,25 @@ st.subheader("Upload a fruit image to check if it's fresh or rotten")
 st.divider()
 
 # ---------------------------------------------------------------------------
-# API Status Check
+# API Base URL — configurable for cloud deployment
 # ---------------------------------------------------------------------------
+# Local dev: http://127.0.0.1:8000
+# Cloud: Your deployed FastAPI URL (set via Streamlit secrets or env var)
 API_BASE_URL = "http://127.0.0.1:8000"
+
+# For Streamlit Cloud deployment, use secrets.toml:
+# [api]
+# base_url = "https://your-api.onrender.com"
+try:
+    if "api" in st.secrets and "base_url" in st.secrets["api"]:
+        API_BASE_URL = st.secrets["api"]["base_url"]
+except Exception:
+    pass  # No secrets file found — using default local URL
 
 try:
     resp = requests.get(f"{API_BASE_URL}/", timeout=3)
     if resp.status_code == 200:
-        st.success("✅ API is online")
+        st.success(f"✅ API is online")
     else:
         st.error("❌ API returned an unexpected status")
         st.stop()
@@ -60,7 +71,7 @@ if uploaded_file is None:
 # ---------------------------------------------------------------------------
 st.image(
     Image.open(io.BytesIO(uploaded_file.getvalue())),
-    width=None,
+    use_container_width=True,
     caption="Uploaded image",
 )
 
