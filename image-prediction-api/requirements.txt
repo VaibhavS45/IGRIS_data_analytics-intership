@@ -1,0 +1,16 @@
+# Image Prediction API - Python Dependencies
+# Install PyTorch separately (see README):
+# pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+
+# Backend
+fastapi
+uvicorn
+torch
+torchvision
+pillow
+python-multipart
+numpy
+
+# Frontend (optional — for Streamlit UI)
+streamlit
+requests
