@@ -35,6 +35,32 @@ This week focused on setting up the development environment, understanding the i
 |------------------|--------------------------------------------|
 | `README.md`      | This file — onboarding notes               |
 | `profile.json`   | JSON profile with intern details           |
+| `app.py`         | Streamlit profile dashboard (deployable)   |
+
+## 🚀 Live Deployment (Streamlit)
+
+This week includes a Streamlit profile page (`app.py`) that displays your intern profile from `profile.json`.
+
+### Run locally
+
+```bash
+cd week1-onboarding
+streamlit run app.py
+```
+
+### Deploy to Streamlit Community Cloud
+
+1. Push the repository to GitHub
+2. Go to [share.streamlit.io](https://share.streamlit.io)
+3. Click **"New app"**
+4. Set:
+   - **Repository:** `VaibhavS45/igrislab-data-analytics-internship`
+   - **Branch:** `main`
+   - **Main file path:** `week1-onboarding/app.py`
+5. Click **Deploy**
+
+Your profile dashboard will be live at:  
+`https://igrislab-data-analytics-internship.streamlit.app/`
 
 ---
 
