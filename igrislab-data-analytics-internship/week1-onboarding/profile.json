@@ -1,0 +1,26 @@
+{
+  "name": "Vaibhav S",
+  "role": "Data Analytics Intern",
+  "internID": "IGRIS-DA-2026-001",
+  "skills": [
+    "Python",
+    "Pandas",
+    "NumPy",
+    "Matplotlib",
+    "Seaborn",
+    "Streamlit",
+    "Scikit-learn",
+    "Data Cleaning",
+    "Exploratory Data Analysis",
+    "Data Visualisation",
+    "Machine Learning"
+  ],
+  "tools": [
+    "Jupyter Notebook",
+    "VS Code",
+    "Git",
+    "GitHub",
+    "Streamlit",
+    "Plotly"
+  ]
+}

@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+dist/
+build/
+*.whl
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Data files (keep raw data out of repo)
+*.csv
+*.xlsx
+*.xls
+*.json
+*.db
+*.sqlite
+!profile.json
+!requirements.txt
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Environment variables
+.env.local
+.env.production
+
+# Git
+*.orig
+*.bak
