@@ -37,5 +37,3 @@ This week focused on setting up the development environment, understanding the i
 | `profile.json`   | JSON profile with intern details           |
 
 ---
-
-*Week 1 completed — repository ready for upcoming data analysis projects.*
