@@ -63,5 +63,3 @@ Your profile dashboard will be live at:
 `https://igrislab-data-analytics-internship.streamlit.app/`
 
 ---
-
-*Week 1 completed — repository ready for upcoming data analysis projects.*
