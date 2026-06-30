@@ -373,16 +373,28 @@ if __name__ == "__main__":
         train_and_evaluate(X_train, X_test, y_train, y_test)
 
     # Save best model and encoders
+    # Using the EXACT same key names that app.py's train_fresh() expects
     print("\n" + "=" * 70)
     print("SAVING ARTIFACTS")
     print("=" * 70)
     joblib.dump(best_model, 'churn_model.pkl')
+
+    # Build ROC curves data from roc_data (trained_models has all 3)
+    roc_curves_save = {}
+    for name, (fpr, tpr, auc) in roc_data.items():
+        roc_curves_save[name] = (fpr, tpr, auc)
+
+    # Feature importance DataFrame for app.py's imp_df
+    imp_df_save = feature_importance
+
     joblib.dump({
         'le_dict': le_dict,
         'scaler': scaler,
         'feature_names': X.columns.tolist(),
-        'results_df': results_df,
-        'feature_importance': feature_importance
+        'num_cols': X.select_dtypes(include=['int64', 'float64']).columns.tolist(),
+        'imp_df': imp_df_save,
+        'metrics_df': results_df,
+        'roc_curves': roc_curves_save
     }, 'churn_encoders.pkl')
     print("  Saved churn_model.pkl")
     print("  Saved churn_encoders.pkl")

@@ -1,4 +1,4 @@
-"""
+   """
 Customer Churn Analytics — Streamlit Dashboard
 ================================================
 Data Analytics Internship @ IGRIS LAB — Week 4
@@ -449,22 +449,27 @@ with tab1:
             )
             st.plotly_chart(fig_e, width='stretch')
 
-        # Model comparison table
-        if metrics_df is not None and len(metrics_df) > 0:
-            st.markdown("---")
-            st.subheader("📊 Model Performance Summary")
-            st.dataframe(
-                metrics_df.style.highlight_max(
-                    axis=0, subset=['Accuracy', 'Precision', 'Recall', 'F1', 'AUC-ROC']
-                ).format({
-                    'Accuracy': '{:.3f}', 'Precision': '{:.3f}',
-                    'Recall': '{:.3f}', 'F1': '{:.3f}', 'AUC-ROC': '{:.3f}'
-                }),
-                width='stretch',
-                hide_index=True
-            )
+        # Note: Model comparison table is in the Model Performance tab (tab2)
 
 with tab2:
+    st.subheader("📊 Model Performance Summary")
+
+    if metrics_df is not None and len(metrics_df) > 0:
+        st.dataframe(
+            metrics_df.style.highlight_max(
+                axis=0, subset=['Accuracy', 'Precision', 'Recall', 'F1', 'AUC-ROC']
+            ).format({
+                'Accuracy': '{:.3f}', 'Precision': '{:.3f}',
+                'Recall': '{:.3f}', 'F1': '{:.3f}', 'AUC-ROC': '{:.3f}'
+            }),
+            width='stretch',
+            hide_index=True
+        )
+    else:
+        st.info("Model metrics not available. Run churn_analysis.py first to train models.")
+
+    st.markdown("---")
+
     st.subheader("💡 Retention Recommendations")
 
     col_r1, col_r2 = st.columns(2)
