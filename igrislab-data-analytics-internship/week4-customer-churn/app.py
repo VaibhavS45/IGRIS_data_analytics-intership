@@ -1,4 +1,4 @@
-   """
+"""
 Customer Churn Analytics — Streamlit Dashboard
 ================================================
 Data Analytics Internship @ IGRIS LAB — Week 4
@@ -244,8 +244,7 @@ roc_curves = artifacts['roc_curves']
 # Sidebar Filters
 # ---------------------------
 
-st.sidebar.title("📊 Customer Churn")
-st.sidebar.markdown("Data Analytics Internship @ IGRIS LAB — **Week 4**")
+st.sidebar.title("Data Analytics Internship @ IGRIS LAB - **Week 4**")
 st.sidebar.markdown("---")
 
 contract_filter = st.sidebar.multiselect(
@@ -279,9 +278,9 @@ st.sidebar.metric("Filtered Customers", filtered_df.shape[0])
 # Title & KPIs
 # ---------------------------
 
-st.title("📉 Customer Churn Analytics")
+st.title("Customer Churn Analytics")
 st.markdown(
-    "**Data Analytics Internship @ IGRIS LAB — Week 4**  |  "
+    "**Data Analytics Internship @ IGRIS LAB - Week 4**  |  "
     "Analyse churn patterns, predict at-risk customers, and explore retention strategies."
 )
 st.markdown("---")
@@ -289,7 +288,6 @@ st.markdown("---")
 # Safe KPI calculations (handle empty filtered_df)
 overall_churn_rate = (df['churn'] == 'Yes').mean() * 100
 overall_avg_tenure = df['tenure_months'].mean()
-overall_revenue_at_risk = df[df['churn'] == 'Yes']['monthly_charges'].sum()
 
 if len(filtered_df) > 0:
     churned = filtered_df[filtered_df['churn'] == 'Yes']
@@ -315,9 +313,7 @@ with col2:
     st.metric("Avg Tenure (Churned)", f"{kpi_avg_tenure_churned:.1f} months",
               delta=f"{delta_tenure:.1f} vs overall avg", delta_color="inverse")
 with col3:
-    delta_rev = kpi_revenue_at_risk - overall_revenue_at_risk if len(filtered_df) > 0 else 0
-    st.metric("Monthly Revenue at Risk", f"${kpi_revenue_at_risk:,.0f}",
-              delta=f"${delta_rev:,.0f} vs all", delta_color="inverse")
+    st.metric("Monthly Revenue at Risk", f"${kpi_revenue_at_risk:,.0f}")
 
 st.markdown("---")
 
@@ -325,7 +321,7 @@ st.markdown("---")
 # Charts & Tabs
 # ---------------------------
 
-st.subheader("📈 Churn Analysis")
+st.subheader("Churn Analysis")
 
 tab1, tab2, tab3 = st.tabs(["Churn Patterns", "Model Performance & Retention", "Predict Churn"])
 
@@ -441,7 +437,7 @@ with tab1:
                     line=dict(color='gray', dash='dash', width=1)
                 ))
             fig_e.update_layout(
-                title='ROC Curves — All Models',
+                title='ROC Curves - All Models',
                 xaxis_title='False Positive Rate',
                 yaxis_title='True Positive Rate',
                 height=420,
@@ -452,7 +448,7 @@ with tab1:
         # Note: Model comparison table is in the Model Performance tab (tab2)
 
 with tab2:
-    st.subheader("📊 Model Performance Summary")
+    st.subheader("Model Performance Summary")
 
     if metrics_df is not None and len(metrics_df) > 0:
         st.dataframe(
@@ -470,12 +466,12 @@ with tab2:
 
     st.markdown("---")
 
-    st.subheader("💡 Retention Recommendations")
+    st.subheader("Retention Recommendations")
 
     col_r1, col_r2 = st.columns(2)
 
     with col_r1:
-        st.markdown("### 🎯 High-Risk Segments")
+        st.markdown("### High-Risk Segments")
         st.markdown("""
         | Segment | Churn Risk | Action |
         |---|---|---|
@@ -487,7 +483,7 @@ with tab2:
         """)
 
     with col_r2:
-        st.markdown("### 🛡️ Retention Strategies")
+        st.markdown("### Retention Strategies")
         st.markdown("""
         **1. Contract Conversion**
         - Offer 10% discount for switching to annual contracts
@@ -517,7 +513,7 @@ with tab2:
     )
 
 with tab3:
-    st.subheader("🔮 Predict Customer Churn")
+    st.subheader("Predict Customer Churn")
     st.markdown("Enter customer details below to predict churn probability.")
 
     col_in1, col_in2, col_in3 = st.columns(3)
@@ -558,7 +554,7 @@ with tab3:
         'has_dependents': dependents_input
     }
 
-    if st.button("🔍 Predict Churn", type="primary", use_container_width=True):
+    if st.button("Predict Churn", type="primary", use_container_width=True):
         try:
             input_df = pd.DataFrame([input_data])
 
@@ -589,9 +585,9 @@ with tab3:
                 )
 
             with col_res3:
-                action = "⚠️ Immediate retention intervention needed" if proba >= 0.6 else \
-                         "📋 Monitor and offer incentives" if proba >= 0.3 else \
-                         "✅ Customer is likely to stay"
+                action = "Immediate retention intervention needed" if proba >= 0.6 else \
+                         "Monitor and offer incentives" if proba >= 0.3 else \
+                         "Customer is likely to stay"
                 st.markdown(
                     f"<div style='text-align: center;'>"
                     f"<p style='color: gray; font-size: 0.9rem;'>Recommendation</p>"
@@ -602,34 +598,34 @@ with tab3:
 
             # Risk factors
             st.markdown("---")
-            st.markdown("### 🔍 Key Risk Factors for This Customer")
+            st.markdown("### Key Risk Factors for This Customer")
             risk_factors = []
             if contract_input == 'Month-to-month':
-                risk_factors.append("Month-to-month contract — highest churn risk segment")
+                risk_factors.append("Month-to-month contract - highest churn risk segment")
             if tenure_input <= 12:
-                risk_factors.append(f"Short tenure ({tenure_input} months) — high early churn risk")
+                risk_factors.append(f"Short tenure ({tenure_input} months) - high early churn risk")
             if tech_input == 'No':
-                risk_factors.append("No tech support — customers with support are more loyal")
+                risk_factors.append("No tech support - customers with support are more loyal")
             if security_input == 'No':
-                risk_factors.append("No online security — bundle security to increase retention")
+                risk_factors.append("No online security - bundle security to increase retention")
             if payment_input == 'Electronic check':
-                risk_factors.append("Electronic check payment — migrate to auto-pay")
+                risk_factors.append("Electronic check payment - migrate to auto-pay")
             if senior_input == 1:
-                risk_factors.append("Senior citizen — consider dedicated support line")
+                risk_factors.append("Senior citizen - consider dedicated support line")
             if monthly_charges_input > 100:
-                risk_factors.append(f"High monthly charges (${monthly_charges_input:.0f}) — above average")
+                risk_factors.append(f"High monthly charges (${monthly_charges_input:.0f}) - above average")
 
             if risk_factors:
                 for rf in risk_factors:
-                    st.markdown(f"- ⚠️ {rf}")
+                    st.markdown(f"- {rf}")
             else:
-                st.markdown("✅ No major risk factors detected for this customer profile.")
+                st.markdown("No major risk factors detected for this customer profile.")
         except Exception as e:
             st.error(f"Prediction error: {e}")
 
 st.markdown("---")
 st.caption(
-    "Data Analytics Internship @ IGRIS LAB — Week 4  |  "
+    "Data Analytics Internship @ IGRIS LAB - Week 4  |  "
     "Dataset: Synthetic Telco Customer Churn (3,000 records)  |  "
     "Built with Streamlit, Plotly, scikit-learn & XGBoost"
 )
